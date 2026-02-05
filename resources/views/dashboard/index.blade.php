@@ -1,7 +1,7 @@
 <!-- resources/views/dashboard/index.blade.php -->
 @extends('layouts.app')
 
-@section('title', 'Dashboard - Inventory Toko Bangunan')
+@section('title', 'Dashboard - Nmart-Build')
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">

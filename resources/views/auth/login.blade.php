@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ __('Login') }} - PT PUTRA JAYA SAMPANGAN</title>
+    <title>{{ __('Login') }} - Nmart-Build</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -21,31 +21,33 @@
         }
 
         body {
-            background: linear-gradient(135deg, #fdf2f8 0%, #f472b6 100%);
+            background-color: #f8fafc;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            color: #334155;
         }
 
         .login-container {
             width: 100%;
             max-width: 440px;
             background: white;
-            border-radius: 20px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
             animation: fadeIn 0.5s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .company-header {
-            background: linear-gradient(to right, #ec4899, #db2777);
+            background-color: #1e40af;
             color: white;
             padding: 30px;
             text-align: center;
@@ -56,33 +58,34 @@
             content: '';
             position: absolute;
             bottom: 0;
-            left: 10%;
-            width: 80%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.3);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #60a5fa;
+            border-radius: 2px;
         }
 
         .company-logo {
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
         }
 
         .company-name {
             font-size: 1.8rem;
             font-weight: 700;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
         }
 
         .company-subtitle {
             font-size: 0.9rem;
             opacity: 0.9;
-            margin-top: 5px;
-            letter-spacing: 2px;
+            margin-top: 8px;
+            font-weight: 400;
+            color: #dbeafe;
         }
 
         .login-content {
@@ -91,7 +94,7 @@
 
         .form-title {
             text-align: center;
-            color: #be185d;
+            color: #1e40af;
             font-size: 1.5rem;
             margin-bottom: 30px;
             font-weight: 600;
@@ -103,7 +106,7 @@
 
         .input-label {
             display: block;
-            color: #374151;
+            color: #475569;
             font-size: 0.875rem;
             font-weight: 500;
             margin-bottom: 8px;
@@ -112,22 +115,22 @@
         .input-field {
             width: 100%;
             padding: 12px 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
             font-size: 1rem;
-            transition: all 0.3s;
-            background: #f9fafb;
+            transition: all 0.2s;
+            background: white;
+            color: #334155;
         }
 
         .input-field:focus {
             outline: none;
-             border-color: #ec4899;
-    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.25);
-            background: white;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         .input-error {
-            color: #be185d;
+            color: #dc2626;
             font-size: 0.875rem;
             margin-top: 6px;
         }
@@ -148,37 +151,39 @@
         .remember-me input[type="checkbox"] {
             width: 18px;
             height: 18px;
-            accent-color: #ec4899;
+            accent-color: #3b82f6;
+            border-radius: 4px;
         }
 
         .remember-me span {
-            color: #6b7280;
+            color: #64748b;
             font-size: 0.875rem;
         }
 
         .forgot-password {
-            color: #db2777;
+            color: #3b82f6;
             text-decoration: none;
             font-size: 0.875rem;
-            transition: color 0.3s;
+            transition: color 0.2s;
+            font-weight: 500;
         }
 
         .forgot-password:hover {
-            color: #be185d;
+            color: #1d4ed8;
             text-decoration: underline;
         }
 
         .login-button {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(to right, #ec4899, #db2777);
+            background-color: #1e40af;
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -186,34 +191,47 @@
         }
 
         .login-button:hover {
-            transform: translateY(-2px);
-             box-shadow: 0 10px 20px rgba(236, 72, 153, 0.4);
+            background-color: #1d4ed8;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+        }
+
+        .login-button:active {
+            transform: translateY(1px);
         }
 
         .session-status {
-            padding: 12px;
-            border-radius: 10px;
+            padding: 12px 16px;
+            border-radius: 8px;
             margin-bottom: 20px;
             text-align: center;
             font-size: 0.875rem;
+            display: none;
         }
 
         .session-status.success {
-            background: #d1fae5;
-            color: #065f46;
-            border: 1px solid #a7f3d0;
+            background-color: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+        }
+
+        .session-status.error {
+            background-color: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
         }
 
         .footer-text {
             text-align: center;
             margin-top: 30px;
-            color: #6b7280;
+            color: #94a3b8;
             font-size: 0.875rem;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
         }
 
         @media (max-width: 480px) {
             .login-container {
-                border-radius: 15px;
+                border-radius: 10px;
             }
             
             .company-header {
@@ -240,6 +258,26 @@
             height: 20px;
             fill: currentColor;
         }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        
+        .password-toggle:hover {
+            color: #475569;
+        }
     </style>
 </head>
 <body>
@@ -247,13 +285,14 @@
         <!-- Company Header -->
         <div class="company-header">
             <div class="company-logo">
-    <img src="{{ asset('img/logo3.png') }}"
-         alt="Logo PT Putra Jaya Sampangan"
-         style="height: 60px; width: auto;">
-</div>
+                <img src="{{ asset('img/logo3.png') }}"
+                     alt="logo"
+                     style="height: 60px; width: auto;">
+            </div>
            
-            <h1 class="company-name">PT PUTRA JAYA SAMPANGAN</h1>
-            <div class="company-subtitle">LOGIN SYSTEM</div>
+            <h1 class="company-name">Nmart-Build</h1>
+            <div class="company-subtitle">SISTEM MANAJEMEN BANGUNAN
+            </div>
         </div>
 
         <!-- Login Form -->
@@ -265,7 +304,7 @@
 
             <h2 class="form-title">Login ke Akun Anda</h2>
 
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login') }}" id="loginForm">
                 @csrf
 
                 <!-- Email Address -->
@@ -280,7 +319,10 @@
                 <!-- Password -->
                 <div class="input-group">
                     <label class="input-label" for="password">{{ __('Password') }}</label>
-                    <input id="password" class="input-field" type="password" name="password" required autocomplete="current-password" placeholder="••••••••">
+                    <div class="password-container">
+                        <input id="password" class="input-field" type="password" name="password" required autocomplete="current-password" placeholder="••••••••">
+                        <button type="button" class="password-toggle" id="togglePassword">Tampilkan</button>
+                    </div>
                     @if ($errors->has('password'))
                         <div class="input-error">{{ $errors->first('password') }}</div>
                     @endif
@@ -310,12 +352,12 @@
             </form>
 
             <div class="footer-text">
-                &copy; {{ date('Y') }} PT PUTRA JAYA SAMPANGAN. All rights reserved.
+                &copy; {{ date('Y') }} Nmart-Build. Hak Cipta Dilindungi.
             </div>
         </div>
     </div>
 
-    <!-- JavaScript for Session Status -->
+    <!-- JavaScript for enhanced functionality -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Check if there's a session status message
@@ -337,19 +379,99 @@
                 }, 5000);
             }
             
-            // Add focus effects to inputs
-            const inputs = document.querySelectorAll('.input-field');
-            inputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    this.parentElement.classList.add('focused');
+            // Password toggle functionality
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            
+            if (togglePassword && passwordInput) {
+                togglePassword.addEventListener('click', function() {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    this.textContent = type === 'password' ? 'Tampilkan' : 'Sembunyikan';
                 });
-                
-                input.addEventListener('blur', function() {
-                    if (!this.value) {
-                        this.parentElement.classList.remove('focused');
+            }
+            
+            // Form validation feedback
+            const form = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+            const passwordInputField = document.getElementById('password');
+            
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    let valid = true;
+                    
+                    // Reset error states
+                    document.querySelectorAll('.input-error').forEach(el => {
+                        el.style.display = 'none';
+                    });
+                    
+                    // Email validation
+                    if (!emailInput.value.trim()) {
+                        showError(emailInput, 'Email diperlukan');
+                        valid = false;
+                    } else if (!isValidEmail(emailInput.value)) {
+                        showError(emailInput, 'Format email tidak valid');
+                        valid = false;
+                    }
+                    
+                    // Password validation
+                    if (!passwordInputField.value.trim()) {
+                        showError(passwordInputField, 'Password diperlukan');
+                        valid = false;
+                    }
+                    
+                    if (!valid) {
+                        e.preventDefault();
                     }
                 });
-            });
+            }
+            
+            // Real-time validation
+            if (emailInput) {
+                emailInput.addEventListener('blur', function() {
+                    if (this.value.trim() && !isValidEmail(this.value)) {
+                        showError(this, 'Format email tidak valid');
+                    } else {
+                        hideError(this);
+                    }
+                });
+            }
+            
+            if (passwordInputField) {
+                passwordInputField.addEventListener('blur', function() {
+                    if (this.value.trim() && this.value.length < 6) {
+                        showError(this, 'Password minimal 6 karakter');
+                    } else if (this.value.trim()) {
+                        hideError(this);
+                    }
+                });
+            }
+            
+            // Helper functions
+            function isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            function showError(inputElement, message) {
+                let errorElement = inputElement.parentElement.querySelector('.input-error');
+                if (!errorElement) {
+                    errorElement = document.createElement('div');
+                    errorElement.className = 'input-error';
+                    inputElement.parentElement.appendChild(errorElement);
+                }
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+                inputElement.style.borderColor = '#dc2626';
+            }
+            
+            function hideError(inputElement) {
+                const errorElement = inputElement.parentElement.querySelector('.input-error');
+                if (errorElement) {
+                    errorElement.style.display = 'none';
+                }
+                inputElement.style.borderColor = '#cbd5e1';
+            }
         });
     </script>
 </body>
