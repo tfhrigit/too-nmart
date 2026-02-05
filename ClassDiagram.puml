@@ -1,0 +1,128 @@
+@startuml Class Diagram - Sistem Inventory Toko
+
+class User {
+    -id: int
+    -name: string
+    -email: string
+    -password: string
+    -role: string
+    -phone: string
+    -is_active: bool
+    +isOwner(): bool
+    +isKasir(): bool
+    +isStaffGudang(): bool
+    +hasPermission(permission: string): bool
+    +getPermissions(): array
+}
+
+class Barang {
+    -id: int
+    -kode_barang: string
+    -nama_barang: string
+    -base_unit: string
+    -stok_sekarang: decimal
+    -stok_minimum: int
+    -harga_beli: decimal
+    -harga_jual: decimal
+    +isStokKritis(): bool
+    +isStokHabis(): bool
+    +convertToBaseUnit(jumlah: decimal, unitName: string): decimal
+    +convertFromBaseUnit(jumlahBase: decimal, unitName: string): decimal
+}
+
+class Supplier {
+    -id: int
+    -kode_supplier: string
+    -nama_supplier: string
+    -alamat: string
+    -no_hp: string
+    -email: string
+}
+
+class Customer {
+    -id: int
+    -kode_customer: string
+    -nama_customer: string
+    -no_hp: string
+    -alamat: string
+}
+
+class BarangMasuk {
+    -id: int
+    -no_transaksi: string
+    -tanggal: date
+    -supplier_id: int
+    -barang_id: int
+    -jumlah: decimal
+    -unit_name: string
+    -harga_beli: decimal
+    -total_harga: decimal
+    -user_id: int
+}
+
+class BarangKeluar {
+    -id: int
+    -no_transaksi: string
+    -tanggal: date
+    -customer_id: int
+    -metode_pembayaran: string
+    -keterangan: string
+    -user_id: int
+}
+
+class BarangKeluarItem {
+    -id: int
+    -barang_keluar_id: int
+    -barang_id: int
+    -nama_barang_manual: string
+    -jumlah: decimal
+    -unit_name: string
+    -jumlah_in_base_unit: decimal
+    -harga_jual: decimal
+    -total_harga: decimal
+}
+
+class ItemUnit {
+    -id: int
+    -barang_id: int
+    -unit_name: string
+    -multiplier: decimal
+    -is_base: bool
+}
+
+class UserPermission {
+    -id: int
+    -user_id: int
+    -permission: string
+}
+
+' Relationships
+User ||--o{ UserPermission : hasMany
+User ||--o{ BarangMasuk : hasMany
+User ||--o{ BarangKeluar : hasMany
+
+Barang ||--o{ ItemUnit : hasMany
+Barang ||--o{ BarangMasuk : hasMany
+Barang ||--o{ BarangKeluarItem : hasMany
+
+Supplier ||--o{ BarangMasuk : hasMany
+
+Customer ||--o{ BarangKeluar : hasMany
+
+BarangKeluar ||--o{ BarangKeluarItem : hasMany
+
+BarangMasuk }--|| Barang : belongsTo
+BarangMasuk }--|| Supplier : belongsTo
+BarangMasuk }--|| User : belongsTo
+
+BarangKeluar }--|| Customer : belongsTo
+BarangKeluar }--|| User : belongsTo
+
+BarangKeluarItem }--|| BarangKeluar : belongsTo
+BarangKeluarItem }--|| Barang : belongsTo
+
+ItemUnit }--|| Barang : belongsTo
+
+UserPermission }--|| User : belongsTo
+
+@enduml

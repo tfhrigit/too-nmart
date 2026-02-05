@@ -1,0 +1,61 @@
+@startuml DFD Level 1 - Sistem Inventory Toko
+
+!define PROCESS(ref,name) rectangle name as ref <<process>>
+!define DATASTORE(ref,name) database name as ref <<datastore>>
+!define EXTERNAL_ENTITY(ref,name) actor name as ref <<external>>
+
+' External Entities
+EXTERNAL_ENTITY(User, "Pengguna")
+EXTERNAL_ENTITY(Supplier, "Supplier")
+EXTERNAL_ENTITY(Customer, "Customer")
+
+' Processes
+PROCESS(P1, "Manajemen User")
+PROCESS(P2, "Manajemen Supplier")
+PROCESS(P3, "Manajemen Customer")
+PROCESS(P4, "Manajemen Barang")
+PROCESS(P5, "Proses Barang Masuk")
+PROCESS(P6, "Proses Barang Keluar")
+PROCESS(P7, "Generate Laporan")
+
+' Data Stores
+DATASTORE(BarangDB, "Database Barang")
+DATASTORE(UserDB, "Database User")
+DATASTORE(SupplierDB, "Database Supplier")
+DATASTORE(CustomerDB, "Database Customer")
+DATASTORE(TransactionDB, "Database Transaksi")
+
+' Data Flows
+User --> P1 : Data User
+P1 --> UserDB : CRUD User
+UserDB --> P1 : Data User
+
+User --> P2 : Data Supplier
+P2 --> SupplierDB : CRUD Supplier
+SupplierDB --> P2 : Data Supplier
+
+User --> P3 : Data Customer
+P3 --> CustomerDB : CRUD Customer
+CustomerDB --> P3 : Data Customer
+
+User --> P4 : Data Barang
+P4 --> BarangDB : CRUD Barang
+BarangDB --> P4 : Data Barang
+
+Supplier --> P5 : Data Barang Masuk
+P5 --> BarangDB : Update Stok
+P5 --> TransactionDB : Simpan Transaksi Masuk
+TransactionDB --> P5 : Konfirmasi
+
+Customer --> P6 : Permintaan Barang Keluar
+P6 --> BarangDB : Update Stok
+P6 --> TransactionDB : Simpan Transaksi Keluar
+TransactionDB --> P6 : Konfirmasi
+P6 --> Customer : Faktur
+
+User --> P7 : Permintaan Laporan
+P7 --> BarangDB : Query Data
+P7 --> TransactionDB : Query Transaksi
+P7 --> User : Laporan
+
+@enduml

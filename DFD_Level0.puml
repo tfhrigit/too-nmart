@@ -1,0 +1,47 @@
+@startuml DFD Level 0 - Sistem Inventory Toko
+
+!define PROCESS(ref,name) rectangle name as ref <<process>>
+!define DATASTORE(ref,name) database name as ref <<datastore>>
+!define EXTERNAL_ENTITY(ref,name) actor name as ref <<external>>
+
+' External Entities
+EXTERNAL_ENTITY(User, "Pengguna\n(Owner/Kasir/Staff)")
+EXTERNAL_ENTITY(Supplier, "Supplier")
+EXTERNAL_ENTITY(Customer, "Customer")
+
+' Main Process
+PROCESS(System, "Sistem Inventory Toko")
+
+' Data Stores
+DATASTORE(BarangDB, "Database Barang")
+DATASTORE(UserDB, "Database User")
+DATASTORE(SupplierDB, "Database Supplier")
+DATASTORE(CustomerDB, "Database Customer")
+DATASTORE(TransactionDB, "Database Transaksi")
+
+' Data Flows
+User --> System : Login & Permintaan
+System --> User : Response & Laporan
+
+Supplier --> System : Data Barang Masuk
+System --> Supplier : Konfirmasi Pemesanan
+
+Customer --> System : Permintaan Barang Keluar
+System --> Customer : Faktur & Barang
+
+System --> BarangDB : CRUD Barang
+BarangDB --> System : Data Barang
+
+System --> UserDB : CRUD User
+UserDB --> System : Data User
+
+System --> SupplierDB : CRUD Supplier
+SupplierDB --> System : Data Supplier
+
+System --> CustomerDB : CRUD Customer
+CustomerDB --> System : Data Customer
+
+System --> TransactionDB : Simpan Transaksi
+TransactionDB --> System : Data Transaksi
+
+@enduml
